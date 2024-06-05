@@ -1,7 +1,7 @@
 # modules/basic_module.py
-
 def print_hi(name):
     print(f'Hi, {name}')
+
 
 def tip_calculation():
     print("Welcome to the tip calculator!")
