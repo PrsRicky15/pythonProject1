@@ -5,12 +5,13 @@ class GridGenerator:
         self.xmin = xmin
         self.xmax = xmax
         self.ngrid = ngrid
+        self.dgrid = (xmax-xmin)/ngrid
         self.grid = None
 
     @classmethod
     def from_length(cls, length, ngrid):
-        xmin = 0
-        xmax = length
+        xmin = -length/2
+        xmax = length/2
         return cls(xmin, xmax, ngrid)
 
     def generate_grid(self):
