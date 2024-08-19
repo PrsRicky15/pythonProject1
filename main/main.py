@@ -1,9 +1,13 @@
 # Basic learning of Python
 from modules import machine_learning
-from modules.MathLib import GridGenerator
+from modules.MathLib import GridGenerator, point
 
 
 def grid_fun():
+    p1 = point(1,2,3)
+    p2 = point(1,4,3)
+    p3 = p1.scale(2)
+    print(p3)
     # Creating instance using the first constructor
     grid1 = GridGenerator(0, 10, 5)
     grid1.generate_grid()
@@ -27,6 +31,6 @@ def Machine_Learning():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    #    grid_fun()
+    grid_fun()
     #    Machine_Learning()
     var = 0
