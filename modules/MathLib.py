@@ -20,6 +20,14 @@ class point:
     def scale(self, a):
         return point(self.x * a, self.y * a, self.z * a)
 
+    def new_point(self, other, scale):
+        dist = self.distance(other)
+        val = scale/dist
+
+        return point(self.x + val*(other.x - self.x),
+                     self.y + val*(other.y - self.y),
+                     self.z + val*(other.z - self.z))
+
 class GridGenerator:
     def __init__(self, xmin, xmax, ngrid):
         self.xmin = xmin
