@@ -4,10 +4,11 @@ from modules.MathLib import GridGenerator, point
 
 
 def grid_fun():
-    p1 = point(1,2,3)
-    p2 = point(1,4,3)
-    p3 = p1.scale(2)
-    print(p3)
+    p2 = point(0.89605,0.57104,0.54298)
+    p1 = point(0.60394,0.42899,0.54698)
+    print(p1.new_point(p2,3.09073))
+    print(p1.distance(p2))
+
     # Creating instance using the first constructor
     grid1 = GridGenerator(0, 10, 5)
     grid1.generate_grid()

@@ -1,5 +1,4 @@
 import math
-
 import numpy as np
 
 class point:
@@ -23,7 +22,6 @@ class point:
     def new_point(self, other, scale):
         dist = self.distance(other)
         val = scale/dist
-
         return point(self.x + val*(other.x - self.x),
                      self.y + val*(other.y - self.y),
                      self.z + val*(other.z - self.z))
