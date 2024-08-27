@@ -1,7 +1,7 @@
 import math
 import numpy as np
 
-class point:
+class Point:
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
@@ -17,14 +17,14 @@ class point:
         return self.x == other.x and self.y == other.y and self.z == other.z
 
     def scale(self, a):
-        return point(self.x * a, self.y * a, self.z * a)
+        return Point(self.x * a, self.y * a, self.z * a)
 
     def new_point(self, other, scale):
         dist = self.distance(other)
         val = scale/dist
-        return point(self.x + val*(other.x - self.x),
-                     self.y + val*(other.y - self.y),
-                     self.z + val*(other.z - self.z))
+        return Point(self.x + val * (other.x - self.x),
+                     self.y + val * (other.y - self.y),
+                     self.z + val * (other.z - self.z))
 
 class GridGenerator:
     def __init__(self, xmin, xmax, ngrid):

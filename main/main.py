@@ -1,11 +1,11 @@
 # Basic learning of Python
 from modules import machine_learning
-from modules.MathLib import GridGenerator, point
+from modules.MathLib import GridGenerator, Point
 
 
 def grid_fun():
-    p2 = point(0.89605,0.57104,0.54298)
-    p1 = point(0.60394,0.42899,0.54698)
+    p2 = Point(0.89605, 0.57104, 0.54298)
+    p1 = Point(0.60394, 0.42899, 0.54698)
     print(p1.new_point(p2,3.09073))
     print(p1.distance(p2))
 
