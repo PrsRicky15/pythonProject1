@@ -27,21 +27,21 @@ class Point:
                      self.z + val * (other.z - self.z))
 
 class GridGenerator:
-    def __init__(self, xmin, xmax, ngrid):
-        self.xmin = xmin
-        self.xmax = xmax
+    def __init__(self, grd_min, grd_max, ngrid):
+        self.grd_min = grd_min
+        self.grd_max = grd_max
         self.ngrid = ngrid
-        self.dgrid = (xmax-xmin)/ngrid
+        self.delta_grid = (grd_max - grd_min) / ngrid
         self.grid = None
 
     @classmethod
     def from_length(cls, length, ngrid):
-        xmin = -length/2
-        xmax = length/2
-        return cls(xmin, xmax, ngrid)
+        grd_min = -length/2
+        grd_max = length/2
+        return cls(grd_min, grd_max, ngrid)
 
     def generate_grid(self):
-        self.grid = np.linspace(self.xmin, self.xmax, self.ngrid)
+        self.grid = np.linspace(self.grd_min, self.grd_max, self.ngrid)
 
     def display_grid(self):
         if self.grid is None:
