@@ -46,6 +46,7 @@ class GaussianPulse:
         plot.title('Expectation value o(t)')
         plot.show()
 
+
 class TddftProperties:
     def __init__(self, pulse_parameter):
         self.dataset = None

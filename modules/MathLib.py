@@ -1,4 +1,6 @@
 import math
+from cgitb import reset
+
 import numpy as np
 
 class Point:
@@ -25,6 +27,14 @@ class Point:
         return Point(self.x + val * (other.x - self.x),
                      self.y + val * (other.y - self.y),
                      self.z + val * (other.z - self.z))
+
+    @classmethod
+    def point_from_vector(cls, point_vec):
+        return cls(point_vec[0], point_vec[1], point_vec[2])
+
+    @staticmethod
+    def origin():
+        return 0., 0., 0.
 
 class GridGenerator:
     def __init__(self, grd_min, grd_max, ngrid):
