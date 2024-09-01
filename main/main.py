@@ -1,15 +1,15 @@
 # Basic learning of Python
-from Mod_tddft import tddftProperties
-from modules import machine_learning
+from Mod_tddft import tddftProperties as TdProp
+from modules import machine_learning as machlearn
 
 dataDir = "data/"
 def Machine_Learning():
     read_file = dataDir + "Data.csv"
-    machine_learning.basic_machine_learn(read_file)
+    machlearn.basic_machine_learn(read_file)
 
 
 def TD_properties_Result():
-    efield_params = tddftProperties.GaussianPulse(0.0005, 8, 0.05)
+    efield_params = TdProp.GaussianPulse(0.0005, 8, 0.05)
     grid = efield_params.field_frequency_Grid(-3,3,30)
     efield_params.plot_td_efield_pulse()
     print(grid)

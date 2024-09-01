@@ -1,6 +1,4 @@
 import math
-from cgitb import reset
-
 import numpy as np
 
 class Point:

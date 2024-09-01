@@ -47,12 +47,13 @@ class GaussianPulse:
         plot.show()
 
 
-class TddftProperties:
-    def __init__(self, pulse_parameter):
+class TddftProperties(GaussianPulse):
+    def __init__(self, efield0, t0, sigma):
+        super().__init__(efield0, t0, sigma)
         self.dataset = None
-        self.efield0 = pulse_parameter.efield0
-        self.t0 = pulse_parameter.t0
-        self.sigma = pulse_parameter.sigma
+
+    def decaying_function(self):
+        pass
 
     def read_file(self, file):
         self.dataset = pd.read_csv(file, delim_whitespace=True, header=None)
@@ -60,7 +61,6 @@ class TddftProperties:
     def plot_td_expectation_value(self):
         x = self.dataset.iloc[:, 1]  # Second column
         y = self.dataset.iloc[:, 2]  # Third column
-
         #Plot the data on a grid
         plot.figure(figsize=(8, 6))
         plot.scatter(x, y, c='green', marker='x')
