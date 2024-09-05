@@ -3,7 +3,7 @@ import numpy as np
 from modules.MathLib import GridGenerator as Grid
 
 class Function:
-    def __init__(self, center, sigma):
+    def __init__(self, sigma=1, center=0):
         self.cen = center
         self.sigma = sigma
 
@@ -25,14 +25,14 @@ class Function:
 
 
 class Potential(Grid, Function):
-    def __init__(self, grid_min, grid_max, ngrid, center, sigma):
+    def __init__(self, grid_min, grid_max, ngrid, sigma=1, center=0):
         Grid.__init__(self, grid_min, grid_max, ngrid)
-        Function.__init__(self, center, sigma)
+        Function.__init__(self, sigma, center)
 
     @classmethod
-    def poten_from_length(cls, length, ngrid, cen, sigma):
+    def poten_from_length(cls, length, ngrid, sigma, center):
         grid_res = Grid.from_length(length, ngrid)
-        return cls(grid_res.grd_min, grid_res.grd_max, ngrid, cen, sigma)
+        return cls(grid_res.grd_min, grid_res.grd_max, ngrid, sigma, center)
 
     def display_grid(self):
         pass
