@@ -3,8 +3,42 @@ import numpy as np
 import pandas as pd
 from scipy.special import erf
 
+class Plot2d:
+    @staticmethod
+    def plot_with_line(data):
+        plot.figure(figsize=(8, 6))
+        plot.plot(data[:,0], data[:,1], label="val")
+        plot.grid(True)
+        plot.legend()
+        plot.xlabel('Time in a.u.')
+        plot.ylabel('<o>(t)')
+        plot.title('Expectation value o(t)')
+        plot.show()
 
-class GaussianPulse:
+    @staticmethod
+    def plot_with_point(data):
+        plot.figure(figsize=(8, 6))
+        plot.scatter(data[:,0], data[:,1], c='green', marker='x')
+        plot.grid(True)
+        plot.xlabel('Time in a.u.')
+        plot.ylabel('<o>(t)')
+        plot.title('Expectation value o(t)')
+        plot.show()
+
+    @staticmethod
+    def plot_with_linepoint(data):
+        plot.figure(figsize=(8, 6))
+        plot.plot(data[:,0], data[:,1], label="val", linestyle='-', color='blue')
+        plot.scatter(data[:,0], data[:,1], c='green', marker='x')
+        plot.grid(True)
+        plot.xlabel('Time in a.u.')
+        plot.ylabel('<o>(t)')
+        plot.title('Expectation value o(t)')
+        plot.legend()
+        plot.show()
+
+
+class GaussianPulse(Plot2d):
     def __init__(self, efield0, t0, sigma):
         self.efield0 = efield0
         self.t0 = t0
@@ -36,15 +70,10 @@ class GaussianPulse:
         return self.pulse_frequency(omega_grid)
 
     def plot_td_efield_pulse(self):
-        [time, field] = self.field_time_Grid(16,1000)
-        #Plot the data on a grid
-        plot.figure(figsize=(8, 6))
-        plot.plot(time, field)
-        plot.grid(True)
-        plot.xlabel('Time in a.u.')
-        plot.ylabel('<o>(t)')
-        plot.title('Expectation value o(t)')
-        plot.show()
+        tgrid, efield = self.field_time_Grid(16,1000)
+        data = np.column_stack((tgrid, efield))
+        Plot2d.plot_with_line(data)
+
 
 
 class TddftProperties(GaussianPulse):
@@ -58,16 +87,12 @@ class TddftProperties(GaussianPulse):
     def read_file(self, file):
         self.__dataset = pd.read_csv(file, delim_whitespace=True, header=None)
 
-    def plot_td_expectation_value(self):
-        x = self.__dataset.iloc[:, 1]  # Second column
-        y = self.__dataset.iloc[:, 2]  # Third column
-        #Plot the data on a grid
-        plot.figure(figsize=(8, 6))
-        plot.scatter(x, y, c='green', marker='x')
-        # Adding grid, labels, and title
-        plot.grid(True)
-        plot.xlabel('Time in a.u.')
-        plot.ylabel('<o>(t)')
-        plot.title('Expectation value o(t)')
-        # Show the plot
-        plot.show()
+    def plot_td_expectation_value(self, data=None):
+        if self.__dataset is None:
+            raise ValueError("Dataset is not loaded. Please call read_file() before plotting.")
+
+        # Use the dataset directly if no data is provided
+        if data is None:
+            data = self.__dataset.to_numpy()
+
+        Plot2d.plot_with_line(data)
