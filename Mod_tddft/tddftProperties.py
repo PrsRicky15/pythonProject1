@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 from scipy.special import erf
 
+# Plotting 2D and 3D-data
 class Plot2d:
     @staticmethod
     def plot_with_line(data):
@@ -29,7 +30,7 @@ class Plot2d:
     def plot_with_linepoint(data):
         plot.figure(figsize=(8, 6))
         plot.plot(data[:,0], data[:,1], label="val", linestyle='-', color='blue')
-        plot.scatter(data[:,0], data[:,1], c='green', marker='x')
+        plot.scatter(data[:,0], data[:,1], c='green', marker='o')
         plot.grid(True)
         plot.xlabel('Time in a.u.')
         plot.ylabel('<o>(t)')
@@ -38,6 +39,7 @@ class Plot2d:
         plot.show()
 
 
+# External time-dependent perturbation
 class GaussianPulse(Plot2d):
     def __init__(self, efield0, t0, sigma):
         self.efield0 = efield0
@@ -72,10 +74,9 @@ class GaussianPulse(Plot2d):
     def plot_td_efield_pulse(self):
         tgrid, efield = self.field_time_Grid(16,1000)
         data = np.column_stack((tgrid, efield))
-        Plot2d.plot_with_line(data)
+        Plot2d.plot_with_linepoint(data)
 
-
-
+# class for time-dependent properties evaluation
 class TddftProperties(GaussianPulse):
     def __init__(self, efield0, t0, sigma):
         super().__init__(efield0, t0, sigma)
